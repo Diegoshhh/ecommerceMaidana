@@ -39,7 +39,9 @@ const Navbar = () => {
           <Logo src={logo}/>
       </ContenedorInterno>
       <ContenedorInterno>
-        <ItemListContainer/>
+        <ItemListContainer greeting='Teclados'/>
+        <ItemListContainer greeting='Sillas Gamers'/>
+        <ItemListContainer greeting='Cpu'/>
         <CardWidget/>
       </ContenedorInterno>
     </Contenedor>
