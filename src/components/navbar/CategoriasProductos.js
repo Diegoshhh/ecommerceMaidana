@@ -13,9 +13,9 @@ const CategoriaNav = styled.a`
 `
 
 
-const ItemListContainer = ({greeting='Categoria'}) => {
+const ItemListContainer = ({categoria='Categoria'}) => {
   return (
-        <CategoriaNav>{greeting}</CategoriaNav>
+        <CategoriaNav>{categoria}</CategoriaNav>
   )
 };
 

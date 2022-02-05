@@ -1,4 +1,4 @@
-import ItemListContainer from "./ItemListContainer"
+import Categorias from "./CategoriasProductos"
 import CardWidget from "./CardWidget"
 import styled from "@emotion/styled"
 import logo from '../../img/logoBlanco.png'
@@ -39,9 +39,9 @@ const Navbar = () => {
           <Logo src={logo}/>
       </ContenedorInterno>
       <ContenedorInterno>
-        <ItemListContainer greeting='Teclados'/>
-        <ItemListContainer greeting='Sillas Gamers'/>
-        <ItemListContainer greeting='Cpu'/>
+        <Categorias categoria='Teclados'/>
+        <Categorias categoria='Sillas Gamers'/>
+        <Categorias categoria='Cpu'/>
         <CardWidget/>
       </ContenedorInterno>
     </Contenedor>
