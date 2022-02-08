@@ -1,5 +1,6 @@
+import styled from 'styled-components'
 import cart from '../../img/carrito.png'
-import styled from '@emotion/styled'
+
 
 
 const Container = styled.div`
