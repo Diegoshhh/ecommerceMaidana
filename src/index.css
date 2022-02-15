@@ -95,6 +95,8 @@ body {
   height: 570px;
   object-fit:contain;
   margin: 0;
+  border: none;
+  background-color: #2f3848;
 }
 .detailSeparator{
   max-width: 350px;

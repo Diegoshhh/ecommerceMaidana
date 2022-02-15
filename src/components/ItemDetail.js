@@ -1,20 +1,18 @@
 import React from 'react'
-import { articulos } from './data'
 import ItemCount from './ItemCount'
 
-const ItemDetail = () => {
+const ItemDetail = ({item}) => {
+
 
   return (
-    <div className='contenedorDetail contenedorInteriorCard'>
-      <img className='imgCardBig' src={articulos[0].src} />
-      <div className='detailSeparator'>
-        <div>
-            <h1>{articulos[0].title}</h1>
-            <p className='precioBig'>{articulos[0].price}</p>
+    <div className='contenedorInteriorCard contenedorDetail'>
+        <img className='imgCardBig' src={item.src} />
+        <div className='detailSeparator'>
+          <h1>{item.title}</h1>
+          <p className='precioBig'>{item.price}</p>
+          <p>{item.description}</p>
+          <ItemCount/>
         </div>
-        <p>{articulos[0].description}</p>
-        <ItemCount/>
-      </div>
     </div>
   )
 }

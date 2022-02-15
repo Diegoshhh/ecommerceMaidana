@@ -1,16 +1,7 @@
-import React, { useState } from 'react'
-import ItemDetailContainer from './ItemDetailContainer'
+import React from 'react'
 
 const Item = ({title, img, description, price,category}) => {
-  const [descripcion, setDescripcion] = useState(false)
 
-  const handleMostrar = () => {
-    if(descripcion === false){
-      setDescripcion(true)
-    }else{
-      setDescripcion(false)
-    }
-  }
   
   return (
     <>
@@ -25,10 +16,8 @@ const Item = ({title, img, description, price,category}) => {
               <p>{description}</p>
               <button 
                 className='btn-carrito'
-                onClick={handleMostrar}
               >Ver detalles</button>
           </div>
-        {descripcion && <ItemDetailContainer/>}
       </div>
     </>
   )
