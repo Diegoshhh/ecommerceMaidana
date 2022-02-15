@@ -6,12 +6,12 @@ const Contenedor = styled.div`
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    background-color:#1a202d;
     margin:auto;
     width: 300px;
     border-radius:5px;
     height: 200px; 
     color:#fff;
+    margin-bottom:1.8rem;
 `
 const ContenedorInterno = styled.div`
     display: flex;
@@ -35,9 +35,10 @@ const Boton1 = styled.button`
     margin: 0 10px;
     font-weight:700;
     cursor: pointer;
-    background-color:#5b6e98;
+    background-color:#1a202d;
     color: #fff;
     border-radius:5px;
+    border:none;
 `
 
 const ItemCount = () => {
