@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { traerArticulos } from './data'
+import { useParams } from 'react-router-dom'
+import { getCategory } from './data'
 import ItemList from './ItemList'
 
 
@@ -7,12 +8,13 @@ import ItemList from './ItemList'
 const ItemListContainer = ({greeting}) => {
 
   const [articulos, setArticulos] = useState([])
+  const {categoryId} = useParams()
 
   useEffect(() => {
-    traerArticulos().then(articulos => {
+    getCategory(categoryId).then((articulos) => {
       setArticulos(articulos)
     })  
-  }, [])
+  }, [categoryId])
   
   
   return (
