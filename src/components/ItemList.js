@@ -7,6 +7,7 @@ const ItemList = ({articulos}) => {
     <div className='contenedorArticulos'>
       {articulos.map((articulo) => {
         return <Item 
+                  id={articulo.id}
                   key={articulo.id}
                   category={articulo.category}
                   title={articulo.title}

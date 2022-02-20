@@ -3,6 +3,10 @@ import CardWidget from "./CardWidget"
 import styled from "@emotion/styled"
 import logo from '../../img/logoBlanco.png'
 import lupa from '../../img/lupaBlanca.png'
+import { Link} from "react-router-dom"
+import { useEffect, useState } from "react"
+import {useParams} from 'react-router-dom'
+import {articulos, getCategory} from "../data"
 
 
 const Contenedor = styled.div`
@@ -30,18 +34,41 @@ const Lupa = styled.img`
   }
 `
 
-
 const Navbar = () => {
+  const [filtro, setFiltro] = useState('celular')
+  const [filtrados, setFiltrados] = useState([])
+  const {categoryId} = useParams()
+
+  useEffect(() => {
+    if(filtro){
+      
+      const categFiltrados = articulos.filter(cate => cate.category === filtro)
+      setFiltrados(categFiltrados)
+      console.log(categFiltrados)
+    }
+  }, [categoryId])
+  
+  // onChange={e => setFiltro(e.target.value)} value='celular' 
   return (
     <Contenedor>
       <ContenedorInterno>
-          <Lupa src={lupa}/>
-          <Logo src={logo}/>
+        <Link to={'/'}><Lupa src={lupa}/></Link>
+        <Link to={'/'}><Logo src={logo}/></Link>
       </ContenedorInterno>
       <ContenedorInterno>
-        <Categorias categoria='Teclados'/>
-        <Categorias categoria='Sillas Gamers'/>
-        <Categorias categoria='Cpu'/>
+
+        <Link to={`/category/:${filtro}`}  >
+          <Categorias value={categoryId} categoria='celular'/>
+        </Link>
+
+        <Link to={`/category/:${filtrados}`}>
+          <Categorias filtro={'laptop'} categoria='laptop'/>
+        </Link>
+
+        <Link to={`/category/:${filtrados}`}>
+          <Categorias filtro={'auricular'} categoria='auricular'/>
+        </Link>
+
         <CardWidget/>
       </ContenedorInterno>
     </Contenedor>

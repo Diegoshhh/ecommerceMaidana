@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react"
 import {getItem} from './data'
 import ItemDetail from "./ItemDetail"
-
+import {useParams} from 'react-router-dom'
 
 const ItemDetailContainer = () => {
+  const [item, setItem] = useState()
+  const {productId} = useParams()
 
-  const [item, setItem] = useState([])
 
   useEffect(() => {
-    getItem().then(articulos => {
-      setItem(articulos)
+    getItem(productId).then(producto => {
+      setItem(producto)
+    }).catch(err => {
+      console.log(err)
+    })
+    return(() => {
+      setItem()
     })  
-  }, [])
+  }, [productId])
   
   return (
     <div className="contenedorDetail width">  
