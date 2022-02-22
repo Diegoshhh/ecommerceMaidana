@@ -25,7 +25,10 @@ const Logo = styled.img`
   }
 `
 const Lupa = styled.img`
-    width: 120px;
+    margin-top:2px;
+    margin-left:10px;
+    position:relative;
+    width:50px;
     :hover{
     cursor: pointer;
   }
@@ -41,16 +44,16 @@ const Navbar = () => {
       </ContenedorInterno>
       <ContenedorInterno>
 
-        <Link to={'/category/celular'}>
-          <Categorias categoria='celular'/>
+        <Link to={'/category/Celular'}>
+          <Categorias categoria='Celular'/>
         </Link>
 
-        <Link to={'/category/laptop'}>
-          <Categorias categoria='laptop'/>
+        <Link to={'/category/Laptop'}>
+          <Categorias categoria='Laptop'/>
         </Link>
 
-        <Link to={'/category/auricular'}>
-          <Categorias categoria='auricular'/>
+        <Link to={'/category/Auricular'}>
+          <Categorias categoria='Auricular'/>
         </Link>
 
         <CardWidget/>

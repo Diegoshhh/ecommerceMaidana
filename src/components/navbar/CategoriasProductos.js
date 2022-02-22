@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 
 
 const CategoriaNav = styled.button`
+  background:none;
+  border:none;
   margin: 0 1rem; 
   font-weight:600;
   font-size:2rem;

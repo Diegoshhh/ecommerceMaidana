@@ -13,7 +13,7 @@ body {
   font-size: 16px; 
   font-size: 1.6rem;
   margin: 0;
-  background-color: #fff;
+  background-color: #edf2f6;
 }
 .width{
   width: 100%;
@@ -35,9 +35,10 @@ body {
   display: grid;
   grid-template-columns: repeat(1, 1fr 1fr 1fr);
   margin: 4rem auto;
-  border: 1px;;
+  border: 1px;
 }
 .card{
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -46,13 +47,13 @@ body {
   height: 480px;
   border-radius: 7px;
   text-align: center;
-  margin: 0 0;
+  margin: 10px;
   box-shadow: 1px 5px 10px 0.1px #2f3848;
 }
 .category{
   width: 100%;
   font-size: 22px;
-  color: #1a202d;
+  color: #2f3848;
   border-bottom: 1px solid #edf2f6;
   padding: 1rem;
   margin-top: 0;
@@ -86,17 +87,19 @@ body {
 }
 
 .contenedorDetail{
-  background-color: #2f3848;
-  width: 100%;
-  height: 80vh;
+  background-color: #fff;
+  width: 80%;
+  margin: auto;
+  margin-top: 6rem;
+  border-radius: 7px;
+  box-shadow: 1px 1px 6px 0.1px rgb(205, 207, 209);
 }
 .imgCardBig{
   width: 500px;
-  height: 570px;
   object-fit:contain;
   margin: 0;
   border: none;
-  background-color: #2f3848;
+  background-color: #edf2f6;
 }
 .detailSeparator{
   max-width: 350px;
@@ -106,12 +109,48 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   color: #fff;
+  margin: auto;
+  justify-content: center;
 }
 .precioBig{
   font-size: 50px;
   margin: 0;
   font-weight: bold;
   color: #276ce4;
+}
+.detalles{
+  background:none;
+  border:none;
+  margin: 0 1rem; 
+  font-weight:600;
+  font-size:2rem;
+  align-items:center;
+  color: #fff;
+  cursor:pointer;
+}
+.descripcion{
+  color: #2f3848;
+  font-size: 20px;
+}
+.titleDetail{
+  font-weight: bold;
+  font-size: 30px;
+  color: #1a202d;
+  margin-top: 0;
+}
+.btn-detail{
+  width: 100%;
+  padding: 1rem 2.1rem;
+  margin: 0;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  background-color: #3d485a;
+}
+.btn-detail:hover{
+  background-color: #1a202d;
 }
 
 /* --gris1: #edf2f6;

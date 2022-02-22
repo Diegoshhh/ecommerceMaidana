@@ -6,7 +6,6 @@ const Contenedor = styled.div`
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    margin:auto;
     width: 300px;
     border-radius:5px;
     height: 200px; 
@@ -22,11 +21,19 @@ const ContenedorInterno = styled.div`
 `
 const Boton = styled.button`
     width: 100%;
-    padding: 1.5rem;
+    margin-bottom:0;
+    padding: 3px 20px;
+    border-radius:7px;
+    border:1px solid #2f3848;
+    background-color:#fff;
     font-size:2rem;
     margin: 0 10px;
     font-weight:700;
     cursor: pointer;
+    :hover{
+        color:#fff;
+        background-color:#2f3848;
+    }
 `
 const Boton1 = styled.button`
     width: 100%;
@@ -35,16 +42,18 @@ const Boton1 = styled.button`
     margin: 0 10px;
     font-weight:700;
     cursor: pointer;
-    background-color:#1a202d;
+    background-color:#2f3848;
     color: #fff;
     border-radius:5px;
-    border:none;
+    border:1px solid #1a202d;
+    :hover{
+        color:#fff;
+        background:#1a202d;
+    }
 `
 
-const ItemCount = () => {
-    
-    const [count, setCount] = useState(0);
-    const [stock, setStock] = useState(5);
+const ItemCount = ({stock = 1, initial = 1, onAdd}) => {
+    const [count, setCount] = useState(initial);
 
     const handleIncrement = () => {
         if(count < stock){
@@ -59,29 +68,19 @@ const ItemCount = () => {
         }
     }
 
-    const onAdd = () => {
-        if(stock > 0 ){
-            setStock(stock - count)
-            setCount(0)
-            console.log(`Acabas de ordenar ${count} productos`)
-            
-            return
-        }
-    }
-
     return (
     <Contenedor>
-        <p>Stock {stock} </p>
+        <p className='descripcion'>Stock {stock} </p>
         <ContenedorInterno>
             <Boton
                 onClick={handleDecrement}
             >-</Boton>
-            <p>{count}</p>
+            <p className='descripcion'>{count}</p>
             <Boton 
                 onClick={handleIncrement}
             >+</Boton>
         </ContenedorInterno>  
-        <Boton1
+        <Boton1 
             onClick={onAdd}
         >Agregar al carrito</Boton1>    
     </Contenedor>
