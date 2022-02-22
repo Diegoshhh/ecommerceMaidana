@@ -25,7 +25,8 @@ const ItemDetail = ({item}) => {
             <div className='contenedorInteriorCard'>
               <Link to={'/carrito'}><button className='btn-detail'>Finalizar compra</button></Link>
               <Link to={'/'}><button className='btn-detail'>Seguir Comprando</button></Link>
-            </div>}
+            </div>
+          }
         </div>
     </div>
   )

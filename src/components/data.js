@@ -22,7 +22,7 @@ export const getItem = (id) => {
     const articulo = articulos.find(p => p.id === parseInt(id)) 
     setTimeout(() => {
       resolve(articulo)
-    }, 500);  
+    }, 2000);  
 })}
 export const getCategory = (categoryId) => {
   return new Promise((resolve) => {
@@ -30,6 +30,6 @@ export const getCategory = (categoryId) => {
       (articulo) => articulo.category === categoryId);
     setTimeout(() => {
       categoryId ? resolve(categFiltrados) : resolve(articulos)
-    }, 500);
+    }, 2000);
   })
 }
