@@ -6,8 +6,8 @@ import ItemCount from './ItemCount'
 const ItemDetail = ({item}) => {
   const [cantidad, setCantidad] = useState(0)
 
-  const handleonAdd = (cantidad) => {
-    setCantidad(cantidad)
+  const handleonAdd = (quantity) => {
+    setCantidad(quantity)
   }
   
   return (
