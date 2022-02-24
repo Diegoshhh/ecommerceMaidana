@@ -52,8 +52,8 @@ const Boton1 = styled.button`
     }
 `
 
-const ItemCount = ({stock = 1, initial = 1, onAdd}) => {
-    const [count, setCount] = useState(initial);
+const ItemCount = ({stock = 1, onAdd}) => {
+    const [count, setCount] = useState(0);
 
     const handleIncrement = () => {
         if(count < stock){
@@ -81,7 +81,7 @@ const ItemCount = ({stock = 1, initial = 1, onAdd}) => {
             >+</Boton>
         </ContenedorInterno>  
         <Boton1 
-            onClick={onAdd}
+            onClick={() => onAdd(count)}
         >Agregar al carrito</Boton1>    
     </Contenedor>
   )
