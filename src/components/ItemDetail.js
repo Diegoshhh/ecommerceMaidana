@@ -6,8 +6,11 @@ import ItemCount from './ItemCount'
 const ItemDetail = ({item}) => {
   const [cantidad, setCantidad] = useState(0)
 
+  const {addToCart} = useContext(CartContext)
+
   const handleonAdd = (quantity) => {
     setCantidad(quantity)
+    addToCart(item, quantity)
   }
   
   return (
@@ -35,25 +38,3 @@ const ItemDetail = ({item}) => {
 }
 
 export default ItemDetail
-
-// setCantidad(true)
-// const {datosProductoSeleccionado, setDatosProductoSeleccionado} = useContext(CartContext)
-// const {id, category, stock, src, description, price, title} = item;
-
-    // const productoAgregado = {
-    //   id, category, stock, src, description, price, title, count
-      
-    // } 
-    
-    
-    // const existe = datosProductoSeleccionado.some(p => p.id === productoAgregado.id)
-    // if(existe){
-    //   const productos = datosProductoSeleccionado.map(producto => {
-    //     if(p.id === productoAgregado.id){
-    //       p.count ++
-    //       return p
-    //     }
-    //   })
-    // }else{
-    //   setDatosProductoSeleccionado([...datosProductoSeleccionado, productoAgregado])
-    // }

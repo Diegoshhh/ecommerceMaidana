@@ -5,20 +5,47 @@ export const CartContext = createContext()
 
 //Provider donde se encuentran los state y las funciones
 const CartProvider = ({children}) => {
-    
-    const [datosProductoSeleccionado, setDatosProductoSeleccionado] = useState([])
+    const [cart, setCart] = useState([])
 
-    console.log(datosProductoSeleccionado)
+    const addToCart = (item, quantity) => {
+        if(isInCart(item.id)){
+            sumarCantidad(item.id, quantity)
+        }else{
+            setCart([...cart, {...item, quantity}]);
+        }
+    }
 
-    
+    const isInCart = (id) => {
+        const validacion = cart.some((producto) => producto.id === id)
+        return validacion;
+    }
 
+    const sumarCantidad = (id,quantity) => {
+        const copia = [...cart];
+        copia.forEach(prod => prod.id === id && (prod.quantity += quantity));
 
+    }
+
+    const removeItem = (id) => {
+        const itemsFiltrados = cart.filter(prod => prod.id !== id)
+        setCart(itemsFiltrados)
+
+        console.log(itemsFiltrados)
+    }
+
+    //borrar items
+    const limpiarCarrito = () => {
+        setCart([])
+    }
 
     return (
         <CartContext.Provider
             value={{
-                datosProductoSeleccionado,
-                setDatosProductoSeleccionado
+                cart,
+                setCart,
+                addToCart,
+                limpiarCarrito,
+                removeItem
             }}
         >
             {children}
