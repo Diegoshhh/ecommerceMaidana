@@ -15,6 +15,9 @@ body {
   margin: 0;
   background-color: #edf2f6;
 }
+.p-2{
+  padding: 0 10px;
+}
 .width{
   width: 100%;
 }
@@ -35,6 +38,7 @@ body {
   display: grid;
   grid-template-columns: repeat(1,1fr 1fr 1fr 1fr);
   gap: 4rem;
+  align-items: center;
   margin: 4rem auto;
   border: 1px;
 }
@@ -124,7 +128,7 @@ body {
   border:none;
   margin: 0 1rem; 
   font-weight:600;
-  font-size:1.8rem;
+  font-size:1.7rem;
   align-items:center;
   color: #fff;
   cursor:pointer;

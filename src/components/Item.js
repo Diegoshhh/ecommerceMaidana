@@ -14,7 +14,7 @@ const Item = (articulo) => {
               <h4 className='subTitle'>{articulo.title}</h4>
               <p className='precio'>${articulo.price}</p>
             </div>
-              <p>{articulo.description}</p>
+              <p className='p-2'>{articulo.description}</p>
               <div className='btn-carrito'>
                 <Link to={`/detail/${articulo.id}`}><button className='detalles'>Ver Detalles</button></Link>
               </div>
