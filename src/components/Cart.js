@@ -111,7 +111,7 @@ const Cart = () => {
         ))}
         <ContenedorFinal> 
             <Precio>Total: ${getTotal()}</Precio>
-            <ButtonEliminar
+            <ButtonEliminar className='m-4'
                 onClick={limpiarCarrito}
             >Borrar todo</ButtonEliminar>
         </ContenedorFinal>
