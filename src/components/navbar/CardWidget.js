@@ -1,7 +1,8 @@
+import { useContext } from 'react'
+import { CartContext } from '../../context/CartContext'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import cart from '../../img/carrito.png'
-
-
+import carrito from '../../img/carrito.png'
 
 const Container = styled.div`
     display: flex;
@@ -22,11 +23,21 @@ const Numero = styled.p`
 `
 
 const CardWidget = () => {
+  const {getQuantity,cart} = useContext(CartContext)
+
+
+  if(cart.length === 0){
+    return <></>
+  }
+
   return (
-    <Container>
-      <Carrito src={cart}/>
-      <Numero>0</Numero>
-    </Container>
+          <Container>
+            <Link to={'/cart'}>
+              <Carrito src={carrito}/>
+            </Link>
+            <Numero>{getQuantity()}</Numero>
+          </Container> 
+    
   )
 }
 

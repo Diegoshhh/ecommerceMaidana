@@ -3,13 +3,39 @@ import { useParams } from 'react-router-dom'
 import { getCategory } from './data'
 import ItemList from './ItemList'
 import Loading from './Loading'
-
+import { db } from './services/firebase/firebase'
+import {getDocs, collection, query, where} from 'firebase/firestore'
 
 
 const ItemListContainer = ({greeting}) => {
   const [loading, setLoading] = useState(true)
   const [articulos, setArticulos] = useState([])
   const {categoryId} = useParams()
+
+
+  // useEffect(() => {
+    
+  //   const collectionRef = 
+  //         categoryId ? 
+  //         query(collection(db, 'products'), where('category', '==', categoryId)) :
+  //         collection(db, 'products')
+
+  //   getDocs(collectionRef).then(response => {
+  //     const products = response.docs.map(doc => {
+  //       return {id: doc.id, ...doc.data()}
+  //     })
+  //     setArticulos(products)
+  //     }).catch(err => {
+  //     console.log(err)
+  //     }).finally(() => {
+  //       setLoading(false)
+  //     })
+  //     return(() => {
+  //       setArticulos()
+  //     })
+  //   }, [categoryId])
+  
+
 
   useEffect(() => {
     getCategory(categoryId).then((articulos) => {
