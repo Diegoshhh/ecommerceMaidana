@@ -24,16 +24,17 @@ body {
   align-items: center;
 }
 .imgCard{
-  width: 300px;
+  width: 250px;
   height: 170px;
   object-fit:contain;
   margin: 0;
 }
 .contenedorArticulos{
-  width: 70%;
+  width: 80%;
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(1, 1fr 1fr 1fr);
+  grid-template-columns: repeat(1,1fr 1fr 1fr 1fr);
+  gap: 4rem;
   margin: 4rem auto;
   border: 1px;
 }
@@ -43,11 +44,11 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 310px;
+  width: 270px;
   height: 480px;
   border-radius: 7px;
   text-align: center;
-  margin: 10px;
+  margin: 2rem 10px;
   box-shadow: 1px 5px 10px 0.1px #2f3848;
 }
 .category{
@@ -123,7 +124,7 @@ body {
   border:none;
   margin: 0 1rem; 
   font-weight:600;
-  font-size:2rem;
+  font-size:1.8rem;
   align-items:center;
   color: #fff;
   cursor:pointer;
