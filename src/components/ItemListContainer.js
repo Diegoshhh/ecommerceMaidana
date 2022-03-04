@@ -13,40 +13,28 @@ const ItemListContainer = ({greeting}) => {
   const {categoryId} = useParams()
 
 
-  // useEffect(() => {
-    
-  //   const collectionRef = 
-  //         categoryId ? 
-  //         query(collection(db, 'products'), where('category', '==', categoryId)) :
-  //         collection(db, 'products')
-
-  //   getDocs(collectionRef).then(response => {
-  //     const products = response.docs.map(doc => {
-  //       return {id: doc.id, ...doc.data()}
-  //     })
-  //     setArticulos(products)
-  //     }).catch(err => {
-  //     console.log(err)
-  //     }).finally(() => {
-  //       setLoading(false)
-  //     })
-  //     return(() => {
-  //       setArticulos()
-  //     })
-  //   }, [categoryId])
-  
-
-
   useEffect(() => {
-    getCategory(categoryId).then((articulos) => {
-      setArticulos(articulos)
-    }).catch(err => {
+    setLoading(true)
+    const collectionRef = 
+          categoryId ? 
+          query(collection(db, 'products'), where('category', '==', categoryId)) :
+          collection(db, 'products')
+
+    getDocs(collectionRef).then(response => {
+      const products = response.docs.map(doc => {
+        return {id: doc.id, ...doc.data()}
+      })
+      setArticulos(products)
+      }).catch(err => {
       console.log(err)
-    }).finally(() => {
-      setLoading(false)
-    })  
-  }, [categoryId])
-  
+      }).finally(() => {
+        setLoading(false)
+      })
+      return(() => {
+        setArticulos()
+      })
+    }, [categoryId])
+    
   
   return (
     <>

@@ -18,7 +18,7 @@ const ItemDetail = ({item}) => {
         <img className='imgCardBig' src={item?.src} />
         <div className='detailSeparator'>
           <h1 className='titleDetail'>{item?.title}</h1>
-          <p className='precioBig'>{item?.price}</p>
+          <p className='precioBig'>${item?.price}</p>
           <p className='descripcion'>{item?.description}</p>
 
           {cantidad === 0 

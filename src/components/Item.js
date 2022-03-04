@@ -12,7 +12,7 @@ const Item = (articulo) => {
           <div>
             <div className='contenedorInteriorCard'>
               <h4 className='subTitle'>{articulo.title}</h4>
-              <p className='precio'>{articulo.price}</p>
+              <p className='precio'>${articulo.price}</p>
             </div>
               <p>{articulo.description}</p>
               <div className='btn-carrito'>

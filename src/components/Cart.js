@@ -102,7 +102,7 @@ const Cart = () => {
                         <ButtonEliminar onClick={() => removeItem(prod.id)}>Eliminar Producto</ButtonEliminar>
                     </div>
                     <div>
-                        <Precio>{prod.price}</Precio>
+                        <Precio>${prod.price}</Precio>
                     </div>
                 
                 </ContenedorInterno>
@@ -110,7 +110,7 @@ const Cart = () => {
             
         ))}
         <ContenedorFinal> 
-            <Precio>Total: {getTotal()}</Precio>
+            <Precio>Total: ${getTotal()}</Precio>
             <ButtonEliminar
                 onClick={limpiarCarrito}
             >Borrar todo</ButtonEliminar>
