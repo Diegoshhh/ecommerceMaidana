@@ -42,7 +42,7 @@ const CartProvider = ({children}) => {
         })
         return total
     }
-    
+
     const getQuantity = () => {
         let count = 0
         cart.forEach(prod => {
@@ -50,8 +50,6 @@ const CartProvider = ({children}) => {
         })
         return count
     }
-
-    
 
     const removeItem = (id) => {
         const itemsFiltrados = cart.filter(prod => prod.id !== id)
@@ -72,7 +70,7 @@ const CartProvider = ({children}) => {
                 limpiarCarrito,
                 removeItem,
                 getQuantity,
-                getTotal
+                getTotal,
             }}
         >
             {children}

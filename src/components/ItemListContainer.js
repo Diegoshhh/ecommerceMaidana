@@ -4,7 +4,13 @@ import ItemList from './ItemList'
 import Loading from './Loading'
 import { db } from './services/firebase/firebase'
 import {getDocs, collection, query, where} from 'firebase/firestore'
+import styled from '@emotion/styled'
 
+
+const Titulo = styled.h1`
+  font-size: 5rem;
+  color: #2f3848;
+`
 
 const ItemListContainer = ({greeting}) => {
   const [loading, setLoading] = useState(true)
@@ -24,6 +30,7 @@ const ItemListContainer = ({greeting}) => {
         return {id: doc.id, ...doc.data()}
       })
       setArticulos(products)
+      
       }).catch(err => {
       console.log(err)
       }).finally(() => {
@@ -37,9 +44,8 @@ const ItemListContainer = ({greeting}) => {
   
   return (
     <>
-      <h1 className='center'>
-          {greeting}
-      </h1>
+      <Titulo className='center'>Todo en Tecnologia</Titulo>
+      
       {
         loading 
         ? 

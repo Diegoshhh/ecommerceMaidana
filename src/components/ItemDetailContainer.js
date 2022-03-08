@@ -5,6 +5,7 @@ import Loading from "./Loading"
 import {getDoc, doc} from 'firebase/firestore'
 import { db } from "./services/firebase/firebase"
 
+
 const ItemDetailContainer = () => {
   const [loading, setLoading] = useState(true)
   const [item, setItem] = useState()

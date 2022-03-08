@@ -2,15 +2,22 @@ import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import {CartContext} from '../context/CartContext'
 import ItemCount from './ItemCount'
+import { useNotificationServices } from './services/Notification'
+
 
 const ItemDetail = ({item}) => {
   const [cantidad, setCantidad] = useState(0)
 
   const {addToCart} = useContext(CartContext)
+  const setNotification = useNotificationServices()
 
   const handleonAdd = (quantity) => {
-    setCantidad(quantity)
-    addToCart(item, quantity)
+    if(item.stock > 0){
+      setCantidad(quantity)
+      addToCart(item, quantity)
+      setNotification('success', `Se agrego ${item.title} al carrito`)
+    }
+
   }
   
   return (
@@ -21,7 +28,7 @@ const ItemDetail = ({item}) => {
           <p className='precioBig'>${item?.price}</p>
           <p className='descripcion'>{item?.description}</p>
 
-          {cantidad === 0 
+          {cantidad === 0
             ? 
             <ItemCount 
               onAdd={handleonAdd} 
