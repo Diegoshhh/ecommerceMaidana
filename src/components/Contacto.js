@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
+import Togglable from './Toggle'
+
 
 const Contenedor = styled.div`
   display: flex;
@@ -7,25 +9,18 @@ const Contenedor = styled.div`
   align-items: center;
   margin-top: 3rem;
   margin-bottom: 2rem;
-  @media (min-width: 992px){
-    margin-top: 2rem;
-  }
 `
 const Formulario = styled.form`
   display:flex ;
   flex-direction: column;
   justify-content:space-between ;
-  width: 90%;
-  height: 600px;
+  width: 800px;
+  height: 430px;
   border: 1px solid rgb(46,49,145);
   border-radius: 5px;
   border:none;
   border-top: 1rem solid #1a202d;
   box-shadow: 1px 5px 10px 0.1px #2f3848;
-  @media (min-width: 992px){
-    box-shadow: 1px 5px 10px 0.1px #2f3848;
-    width: 50%;
-  }
 `
 const Titulo = styled.h1`
   margin-top: 1.5rem;
@@ -64,26 +59,6 @@ const Input = styled.input`
     font-size: 1.5rem;
   }
 `
-const ContenedorTextarea = styled.div`
-  margin: 1.5rem auto;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr 3fr);
-  align-items: flex-start;
-`
-const Textarea = styled.textarea`
-  color: #1a202d;;
-  font-family: 'Lato', sans-serif;
-  border: 1px solid #1a202d;;
-  border-radius: 5px;
-  width: 85%;
-  padding: 0.1rem;
-  height: 9rem;
-  font-size: 16px;
-  @media (min-width: 992px){
-    font-size: 1.5rem;
-  }
-`
 const Button = styled.button`
   width: 90%;
   padding: 1rem;
@@ -104,43 +79,35 @@ const Button = styled.button`
 `
 
 
-const Contacto = ({setContactos}) => {
+const Contacto = ({toggleVisibility, setContact}) => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [comment, setComment] = useState('');
 
-  const [error, setError] = useState(false);
 
   const handleSubmit = (e => {
     e.preventDefault()
 
-    if([name, email,phone, address, comment].includes('')){
+    if([name, email,phone, address].includes('')){
       console.log('hay al menos un campo vacio');
-
-      setError(true)
+      toggleVisibility.current.toggleVisibility()
       return
     }
-    setError(false)
-
     //Objeto contacto
     const objetoContacto = {
         name,
         address,
         email,
         phone,
-        comment
     }
-
-    setContactos([objetoContacto])
+    setContact(objetoContacto)
 
     //reiniciar el form
     setName('')
     setEmail('')
     setPhone('')
     setAddress('')
-    setComment('')
   })
 
   return (
@@ -148,7 +115,6 @@ const Contacto = ({setContactos}) => {
       <Formulario
         onSubmit={handleSubmit}
       >
-        {error && <Error mensaje='Todos los campos son Obligatorios'/>}
         
         <Titulo>Haz tu Consulta</Titulo>
         <ContenedorCampo>
@@ -199,15 +165,8 @@ const Contacto = ({setContactos}) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </ContenedorCampo>
-        <ContenedorTextarea>
-          <Label>Mensaje</Label>
-          <Textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
-        </ContenedorTextarea>
         <Contenedor>
-          <Button>Enviar Consulta</Button>
+          <Button>Cargar Datos</Button>
         </Contenedor>
       </Formulario>
     </Contenedor>

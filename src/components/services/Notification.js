@@ -10,7 +10,7 @@ const Notification = ({ message, severity }) => {
         justifyContent: 'center',
         alignItems: 'center',
         width: 'auto',
-        height: 'auto',
+        height: severity === 'success' ? 'auto' : 'auto',
         backgroundColor: severity === 'success' ? '#2f3848' : 'red',
         padding: '10px 20px',
         color: 'white',
@@ -27,8 +27,9 @@ const Notification = ({ message, severity }) => {
         return null
     }
     
+
     return (
-        <div {...config}>
+        <div {...config} >
             {message}
         </div>
     )
@@ -45,7 +46,7 @@ export const NotificationServicesProvider = ({children}) => {
         setSeverity(severity)
         setTimeout(() => {
             setMessage('')
-        }, 3000)
+        }, 5000)
     }
 
     return (
