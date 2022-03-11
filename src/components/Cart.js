@@ -139,7 +139,6 @@ const Factura = styled.div`
 `
 
 const Cart = () => {
-    const [processingOrder, setProcessingOrder] = useState(false)
     const [orden, setOrden] = useState('')
     const [contact, setContact] = useState({
         name: '',
@@ -156,7 +155,7 @@ const Cart = () => {
     const confirmOrder = () => {
         
         if(contact.phone !== '' && contact.address !== '' && contact.email !== '' && contact.name !== '') {
-            setProcessingOrder(true)
+            
             
             const ordenCompra = {
                 buyer: contact,
@@ -175,13 +174,10 @@ const Cart = () => {
                     addDoc(collection(db, 'orders'), ordenCompra).then(({id}) => {
                         batch.commit().then(() => {
                             limpiarCarrito()
-                            setNotification('success', `Su codigo de compra es ${id}`)
                             setOrden(id)
                         })
                     }).catch(error => {
                         setNotification('error', error)
-                    }).finally(() => {
-                        setProcessingOrder(false)
                     })
                 }else{
                     outOfStock.forEach(prod => {
@@ -204,18 +200,13 @@ const Cart = () => {
                     setNotification('error', error)
                 }).then(() => {
                     checkOut()
-                }).finally(() => {
-                    setProcessingOrder(false)
                 })
             })
         }else{
             setNotification('error', 'Debe completar los datos de contacto para generar la orden')
         }
     }
-    if(processingOrder) {
-        return <MensajeCarritoVacio>Se esta procesando su orden</MensajeCarritoVacio>
-    }
-
+    
     if(cart.length === 0){
         return <Centrar>
                     <Precio>Gracias por su compra</Precio>
