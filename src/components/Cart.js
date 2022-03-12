@@ -7,6 +7,7 @@ import { db } from './services/firebase/firebase'
 import { useNotificationServices } from './services/Notification'
 import Togglable from './Toggle'
 import Contacto from './Contacto'
+import Loading from './Loading'
 
 
 const Contenedor = styled.div`
@@ -139,6 +140,7 @@ const Factura = styled.div`
 `
 
 const Cart = () => {
+    const [loading, setLoading] = useState(false)
     const [orden, setOrden] = useState('')
     const [contact, setContact] = useState({
         name: '',
@@ -155,7 +157,7 @@ const Cart = () => {
     const confirmOrder = () => {
         
         if(contact.phone !== '' && contact.address !== '' && contact.email !== '' && contact.name !== '') {
-            
+            setLoading(true)
             
             const ordenCompra = {
                 buyer: contact,
@@ -178,6 +180,8 @@ const Cart = () => {
                         })
                     }).catch(error => {
                         setNotification('error', error)
+                    }).finally(() => {
+                        setLoading(false)
                     })
                 }else{
                     outOfStock.forEach(prod => {
@@ -200,13 +204,18 @@ const Cart = () => {
                     setNotification('error', error)
                 }).then(() => {
                     checkOut()
+                }).finally(() => {
+                    setLoading(false)
                 })
             })
         }else{
             setNotification('error', 'Debe completar los datos de contacto para generar la orden')
         }
     }
-    
+    if(loading) {
+        return <Loading/>
+    }
+
     if(cart.length === 0){
         return <Centrar>
                     <Precio>Gracias por su compra</Precio>
@@ -253,11 +262,9 @@ const Cart = () => {
                 <ButtonEliminar onClick={() => setContact({ phone: '', address: '', email: '', name: ''})}>
                     Reiniciar datos
                 </ButtonEliminar>
-                {/* <Link to={'/orden'}> */}
                     <ButtonConfirmar onClick={() => confirmOrder()}>
                         Finalizar Compra
                     </ButtonConfirmar>
-                {/* </Link> */}
             </OrdenGenerada> 
         :
             <Centrar>    
