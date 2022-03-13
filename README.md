@@ -9,10 +9,10 @@ GitHub: https://github.com/Diegoshhh
 # Proyecto a Desarrollar
 
 Se Desarrollara un Ecommerce acorde a los requerimientos solicitados por CoderHouse, en el cual 
-el lenguaje solictado es React.js. 
+el lenguaje solicitado es React.js. 
 
 # Instalación
-La app desarrollada requiere [Node.js] (https://nodejs.org/) para ejecutarse)
+La app desarrollada requiere [ Node.js ](https://nodejs.org/) para ejecutarse)
 
 Para iniciar el servidor.
 
@@ -32,7 +32,7 @@ npm start
 
 # Rutas
 
-- Ruta '/' --  '*' -- '/category/:categoryId' redireccionan al componente -- ItemListContainer
+- Ruta '/'    '*'   '/category/:categoryId' redireccionan al componente -- ItemListContainer
 - Ruta '/detail/:productId' redireccionan al componente -- ItemDetailContainer
 - Ruta '/cart' redirecciona al componente -- Cart
 
@@ -63,3 +63,5 @@ Datos comprador
 * Css puro
 * Create React App
 * React Router
+
+
