@@ -3,7 +3,7 @@ import CardWidget from "./CardWidget"
 import styled from "@emotion/styled"
 import logo from '../../img/logoBlanco.png'
 import lupa from '../../img/lupaBlanca.png'
-import {Link} from "react-router-dom"
+import {Link, NavLink} from "react-router-dom"
 
 
 const Contenedor = styled.div`
@@ -17,6 +17,7 @@ const ContenedorInterno = styled.div`
     display:flex;
     justify-content:space-around;
     align-items:center;
+    margin-right: 2rem;
 `
 const Logo = styled.img`
     width: 180px;
@@ -44,17 +45,17 @@ const Navbar = () => {
       </ContenedorInterno>
 
       <ContenedorInterno>
-        <Link to={'/category/Celular'}>
+        <NavLink className={({isActive}) => isActive ? 'ActiveOption' : 'Option'} to={'/category/Celular'}>
           <Categorias categoria='Celular'/>
-        </Link>
+        </NavLink>
 
-        <Link to={'/category/Laptop'}>
+        <NavLink className={({isActive}) => isActive ? 'ActiveOption' : 'Option'} to={'/category/Laptop'}>
           <Categorias categoria='Laptop'/>
-        </Link>
+        </NavLink>
 
-        <Link to={'/category/Auricular'}>
+        <NavLink className={({isActive}) => isActive ? 'ActiveOption' : 'Option'} to={'/category/Auricular'}>
           <Categorias categoria='Auricular'/>
-        </Link>
+        </NavLink>
 
         <CardWidget/>
       </ContenedorInterno>

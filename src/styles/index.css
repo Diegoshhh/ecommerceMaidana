@@ -30,6 +30,10 @@ body {
   justify-content: center;
   align-items: center;
 }
+.ActiveOption{
+  color: #276ce4;
+  border-bottom: 4px solid #fff;
+}
 .imgCard{
   width: 250px;
   height: 170px;

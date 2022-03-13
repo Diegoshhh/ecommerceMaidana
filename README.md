@@ -10,16 +10,6 @@ GitHub: https://github.com/Diegoshhh
 
 Se Desarrollara un Ecommerce acorde a los requerimientos solicitados por CoderHouse, en el cual 
 el lenguaje solictado es React.js. 
-Esta actualizacion es correspondiente a la primer entrega de dicho proyecto
-
-## Tecnologias utilizada
-
-* React.js
-* Styled Components
-* Css puro
-* Create React App
-* React Router
-
 
 # Instalación
 La app desarrollada requiere [Node.js] (https://nodejs.org/) para ejecutarse)
@@ -27,7 +17,7 @@ La app desarrollada requiere [Node.js] (https://nodejs.org/) para ejecutarse)
 Para iniciar el servidor.
 
 ```
-cd - carpeta -
+cd  (carpeta del proyecto) 
 npm start
 ```
 
@@ -42,8 +32,9 @@ npm start
 
 # Rutas
 
-- Ruta '/' , '*', '/category/:categoryId' redireccionan al componente <ItemListContainer/>
-- Ruta '/cart' redirecciona al componente <Cart/>
+- Ruta '/' --  '*' -- '/category/:categoryId' redireccionan al componente -- ItemListContainer
+- Ruta '/detail/:productId' redireccionan al componente -- ItemDetailContainer
+- Ruta '/cart' redirecciona al componente -- Cart
 
 # Formato para Products y Orders de compra en Firebase
 Campos que debe contener la coleccion Products:
@@ -64,3 +55,11 @@ Datos comprador
 * email
 * name
 * phone
+
+## Tecnologias utilizada
+
+* React.js
+* Styled Components
+* Css puro
+* Create React App
+* React Router
