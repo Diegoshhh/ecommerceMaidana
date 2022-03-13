@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import ItemDetail from "./ItemDetail"
 import {useParams} from 'react-router-dom'
-import Loading from "./Loading"
+import Loading from "./services/Loading"
 import { getProductById } from "./services/firebase/firebase"
 
 
@@ -22,7 +22,6 @@ const ItemDetailContainer = () => {
     }).finally(() => {
       setLoading(false)
     })
-    
     return(() => {
       setItem()
     })  
@@ -30,16 +29,15 @@ const ItemDetailContainer = () => {
   
   return (
     <>
-    
-    {
-      loading
-      ?
-      <Loading/>
-      :
-      <div className="contenedorDetail width">  
-        <ItemDetail item={item}/>
-      </div>
-    }
+      {
+        loading
+        ?
+        <Loading/>
+        :
+        <div className="contenedorDetail width">  
+          <ItemDetail item={item}/>
+        </div>
+      }
     </>
   )
 }

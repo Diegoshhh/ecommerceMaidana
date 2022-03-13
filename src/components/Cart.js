@@ -1,13 +1,13 @@
 import React, {useContext, useState, useRef} from 'react'
-import styled from '@emotion/styled'
-import { CartContext } from '../context/CartContext'
 import { Link } from 'react-router-dom'
-import { writeBatch, getDoc, doc, addDoc, collection,Timestamp } from 'firebase/firestore'
+import { CartContext } from '../context/CartContext'
+import styled from '@emotion/styled'
+import { writeBatch, getDocs, query, addDoc, collection,Timestamp,where } from 'firebase/firestore'
 import { db } from './services/firebase/firebase'
 import { useNotificationServices } from './services/Notification'
-import Togglable from './Toggle'
+import Togglable from './services/Toggle'
 import Contacto from './Contacto'
-import Loading from './Loading'
+import Loading from './services/Loading'
 
 
 const Contenedor = styled.div`
@@ -153,9 +153,7 @@ const Cart = () => {
     const setNotification = useNotificationServices()
     const contactFormRef = useRef()
 
-
     const confirmOrder = () => {
-        
         if(contact.phone !== '' && contact.address !== '' && contact.email !== '' && contact.name !== '') {
             setLoading(true)
             
@@ -166,52 +164,44 @@ const Cart = () => {
                 date:Timestamp.fromDate(new Date()) 
             }
             
-
             const batch = writeBatch(db)        
             const outOfStock = []
+            const ids = ordenCompra.items.map(i => i)
 
-            const checkOut = () => {
-                if(outOfStock.length === 0){
-
-                    addDoc(collection(db, 'orders'), ordenCompra).then(({id}) => {
-                        batch.commit().then(() => {
+            getDocs(query(collection(db, 'products'),where('category', 'in', ids)))
+                .then(response => {
+                    response.docs.forEach((docSnapshot) => {
+                        if(docSnapshot.data().stock >= objOrder.items.find(prod => prod.id === docSnapshot.id).quantity) {
+                            batch.update(docSnapshot.ref, { stock: docSnapshot.data().stock - ordenCompra.items.find(prod => prod.id === docSnapshot.id).quantity})
+                        } else {
+                            outOfStock.push({id: docSnapshot.id, ...docSnapshot.data()})
+                        }
+                    })
+                }).then(() => {
+                    if(outOfStock.length === 0) {
+                        addDoc(collection(db, 'orders'), ordenCompra).then(({id}) => { 
+                            batch.commit()
                             limpiarCarrito()
                             setOrden(id)
                         })
-                    }).catch(error => {
-                        setNotification('error', error)
-                    }).finally(() => {
-                        setLoading(false)
-                    })
-                }else{
-                    outOfStock.forEach(prod => {
-                        setNotification('error', `El producto ${prod.title} no tiene stock disponible.`)
-                        removeItem(prod.id)
-                    })
-                }
-            }
-
-            ordenCompra.items.forEach(prod => {
-                getDoc(doc(db, 'products', prod.id)).then(response => {
-                    if(response.data().stock >= prod.quantity){
-                        batch.update(doc(db, 'products', response.id),{
-                            stock:response.data().stock - prod.quantity
-                        })
-                    }else{
-                        outOfStock.push({id: response.id, ...response.data()})
-                    }
+                    } else {
+                        outOfStock.forEach(prod => {
+                            setNotification('error', `El producto ${prod.title} no tiene stock disponible`)
+                            removeItem(prod.id)
+                        })    
+                    }               
                 }).catch((error) => {
                     setNotification('error', error)
-                }).then(() => {
-                    checkOut()
                 }).finally(() => {
-                    setLoading(false)
+                    setTimeout(() => {                        
+                        setLoading(false)
+                    }, 2000);
                 })
-            })
         }else{
             setNotification('error', 'Debe completar los datos de contacto para generar la orden')
         }
     }
+    
     if(loading) {
         return <Loading/>
     }
@@ -240,8 +230,7 @@ const Cart = () => {
                         <p className='subtotal'>Subtotal: </p>
                         <Precio>${prod.price * prod.quantity}</Precio>
                     </div>
-                </ContenedorInterno>
-                 
+                </ContenedorInterno>             
             </Contenedor>
         ))}
             <div className='inline'>
@@ -262,9 +251,10 @@ const Cart = () => {
                 <ButtonEliminar onClick={() => setContact({ phone: '', address: '', email: '', name: ''})}>
                     Reiniciar datos
                 </ButtonEliminar>
-                    <ButtonConfirmar onClick={() => confirmOrder()}>
-                        Finalizar Compra
-                    </ButtonConfirmar>
+
+                <ButtonConfirmar onClick={() => confirmOrder()}>
+                    Finalizar Compra
+                </ButtonConfirmar>
             </OrdenGenerada> 
         :
             <Centrar>    

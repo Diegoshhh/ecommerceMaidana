@@ -12,7 +12,6 @@ Se Desarrollara un Ecommerce acorde a los requerimientos solicitados por CoderHo
 el lenguaje solictado es React.js. 
 Esta actualizacion es correspondiente a la primer entrega de dicho proyecto
 
-
 ## Tecnologias utilizada
 
 * React.js
@@ -20,3 +19,48 @@ Esta actualizacion es correspondiente a la primer entrega de dicho proyecto
 * Css puro
 * Create React App
 * React Router
+
+
+# Instalación
+La app desarrollada requiere [Node.js] (https://nodejs.org/) para ejecutarse)
+
+Para iniciar el servidor.
+
+```
+cd - carpeta -
+npm start
+```
+
+# Variables de entorno a configurar:
+* apiKey
+* authDomain
+* projectId
+* storageBucket
+* messagingSenderId
+* appId
+* measurementId
+
+# Rutas
+
+- Ruta '/' , '*', '/category/:categoryId' redireccionan al componente <ItemListContainer/>
+- Ruta '/cart' redirecciona al componente <Cart/>
+
+# Formato para Products y Orders de compra en Firebase
+Campos que debe contener la coleccion Products:
+* category
+* description
+* price
+* src
+* stock
+* title
+
+Campos que va a retornar la coleccion de Orders:
+* date
+* total
+* items
+
+Datos comprador
+* adress
+* email
+* name
+* phone

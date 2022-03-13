@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import ItemList from './ItemList'
-import Loading from './Loading'
-import { getProducts } from './services/firebase/firebase'
 import styled from '@emotion/styled'
+import { getProducts } from './services/firebase/firebase'
+import ItemList from './ItemList'
+import Loading from './services/Loading'
 
 
 const Titulo = styled.h1`
@@ -16,7 +16,6 @@ const ItemListContainer = () => {
   const [articulos, setArticulos] = useState([])
   const {categoryId} = useParams()
 
-
   useEffect(() => {
     setLoading(true)
     
@@ -27,7 +26,6 @@ const ItemListContainer = () => {
     }).finally(() => {
       setLoading(false)
     })
-
     return(() => {
       setArticulos()
     })
@@ -37,7 +35,6 @@ const ItemListContainer = () => {
   return (
     <>
       <Titulo className='center'>Todo en Tecnologia</Titulo>
-      
       {
         loading 
         ? 

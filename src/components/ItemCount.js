@@ -72,17 +72,17 @@ const ItemCount = ({stock = 1, onAdd}) => {
     <Contenedor>
         <p className='descripcion'>Stock {stock} </p>
         <ContenedorInterno>
-            <Boton
-                onClick={handleDecrement}
-            >-</Boton>
+            <Boton onClick={handleDecrement}>
+                -
+            </Boton>
             <p className='descripcion'>{count}</p>
-            <Boton 
-                onClick={handleIncrement}
-            >+</Boton>
+            <Boton onClick={handleIncrement}>
+                +
+            </Boton>
         </ContenedorInterno>  
-        <Boton1 
-            onClick={() => onAdd(count)}
-        >Agregar al carrito</Boton1>    
+        <Boton1 onClick={() => onAdd(count)}>
+            Agregar al carrito
+        </Boton1>    
     </Contenedor>
   )
 }

@@ -42,8 +42,8 @@ const Navbar = () => {
         <Link to={'/'}><Lupa src={lupa}/></Link>
         <Link to={'/'}><Logo src={logo}/></Link>
       </ContenedorInterno>
-      <ContenedorInterno>
 
+      <ContenedorInterno>
         <Link to={'/category/Celular'}>
           <Categorias categoria='Celular'/>
         </Link>

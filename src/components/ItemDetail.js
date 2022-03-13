@@ -17,7 +17,6 @@ const ItemDetail = ({item}) => {
       addToCart(item, quantity)
       setNotification('success', `Se agrego ${item.title} al carrito`)
     }
-
   }
   
   return (

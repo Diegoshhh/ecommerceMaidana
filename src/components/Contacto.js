@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
-import Togglable from './Toggle'
-
 
 const Contenedor = styled.div`
   display: flex;
@@ -94,7 +92,7 @@ const Contacto = ({toggleVisibility, setContact}) => {
       toggleVisibility.current.toggleVisibility()
       return
     }
-    //Objeto contacto
+
     const objetoContacto = {
         name,
         address,
@@ -103,7 +101,6 @@ const Contacto = ({toggleVisibility, setContact}) => {
     }
     setContact(objetoContacto)
 
-    //reiniciar el form
     setName('')
     setEmail('')
     setPhone('')
@@ -114,8 +111,7 @@ const Contacto = ({toggleVisibility, setContact}) => {
     <Contenedor>
       <Formulario
         onSubmit={handleSubmit}
-      >
-        
+      >        
         <Titulo>Haz tu Consulta</Titulo>
         <ContenedorCampo>
           <Label>Nombre</Label>
