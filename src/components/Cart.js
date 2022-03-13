@@ -2,7 +2,7 @@ import React, {useContext, useState, useRef} from 'react'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../context/CartContext'
 import styled from '@emotion/styled'
-import { writeBatch, getDocs, query, addDoc, collection,Timestamp,where } from 'firebase/firestore'
+import { writeBatch, getDocs, query, addDoc, collection,Timestamp,where,documentId } from 'firebase/firestore'
 import { db } from './services/firebase/firebase'
 import { useNotificationServices } from './services/Notification'
 import Togglable from './services/Toggle'
@@ -166,12 +166,12 @@ const Cart = () => {
             
             const batch = writeBatch(db)        
             const outOfStock = []
-            const ids = ordenCompra.items.map(i => i)
+            const ids = ordenCompra.items.map(i => i.id)
 
-            getDocs(query(collection(db, 'products'),where('category', 'in', ids)))
+            getDocs(query(collection(db, 'products'),where(documentId(), 'in', ids)))
                 .then(response => {
                     response.docs.forEach((docSnapshot) => {
-                        if(docSnapshot.data().stock >= objOrder.items.find(prod => prod.id === docSnapshot.id).quantity) {
+                        if(docSnapshot.data().stock >= ordenCompra.items.find(prod => prod.id === docSnapshot.id).quantity) {
                             batch.update(docSnapshot.ref, { stock: docSnapshot.data().stock - ordenCompra.items.find(prod => prod.id === docSnapshot.id).quantity})
                         } else {
                             outOfStock.push({id: docSnapshot.id, ...docSnapshot.data()})
