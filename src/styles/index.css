@@ -30,8 +30,18 @@ body {
   justify-content: center;
   align-items: center;
 }
+a{
+  text-decoration: none;
+  background:none;
+  border:none;
+  margin: 0 1rem; 
+  font-weight:600;
+  font-size:2rem;
+  align-items:center;
+  color: #fff;
+  cursor: pointer;
+}
 .ActiveOption{
-  color: #276ce4;
   border-bottom: 4px solid #fff;
 }
 .imgCard{

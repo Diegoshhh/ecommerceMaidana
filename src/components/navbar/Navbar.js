@@ -1,10 +1,12 @@
-import Categorias from "./CategoriasProductos"
-import CardWidget from "./CardWidget"
+import { useEffect, useState, useContext } from "react"
+import {Link, NavLink} from "react-router-dom"
 import styled from "@emotion/styled"
+import { CartContext } from "../../context/CartContext"
+import { getDocs, collection} from "firebase/firestore"
+import { db } from "../services/firebase/firebase"
+import CardWidget from "./CardWidget"
 import logo from '../../img/logoBlanco.png'
 import lupa from '../../img/lupaBlanca.png'
-import {Link, NavLink} from "react-router-dom"
-
 
 const Contenedor = styled.div`
     background-color: #1a202d; 
@@ -36,7 +38,19 @@ const Lupa = styled.img`
 `
 
 const Navbar = () => {
+  const [categories, setCategories] = useState([])
+  const {cart} = useContext(CartContext)
   
+  useEffect(() => {
+    getDocs(collection(db,'categories')).then(response => {
+      const categories = response.docs.map(cat => {
+        return {id: cat.id, ...cat.data()}
+      })
+      setCategories(categories)
+    })
+  }, [])
+  
+
   return (
     <Contenedor>
       <ContenedorInterno>
@@ -45,19 +59,12 @@ const Navbar = () => {
       </ContenedorInterno>
 
       <ContenedorInterno>
-        <NavLink className={({isActive}) => isActive ? 'ActiveOption' : 'Option'} to={'/category/Celular'}>
-          <Categorias categoria='Celular'/>
-        </NavLink>
-
-        <NavLink className={({isActive}) => isActive ? 'ActiveOption' : 'Option'} to={'/category/Laptop'}>
-          <Categorias categoria='Laptop'/>
-        </NavLink>
-
-        <NavLink className={({isActive}) => isActive ? 'ActiveOption' : 'Option'} to={'/category/Auricular'}>
-          <Categorias categoria='Auricular'/>
-        </NavLink>
-
-        <CardWidget/>
+        {categories.map(cat => 
+          <NavLink key={cat.id} to={`/category/${cat.id}`} className={({ isActive }) => 
+            isActive ? 'ActiveOption' : 'Option'}>
+            {cat.description}
+          </NavLink>)}
+        {cart.length > 0 && <CardWidget />}
       </ContenedorInterno>
     </Contenedor>
   )

@@ -25,7 +25,6 @@ const Numero = styled.p`
 const CardWidget = () => {
   const {getQuantity,cart} = useContext(CartContext)
 
-
   if(cart.length === 0){
     return <></>
   }
@@ -37,7 +36,6 @@ const CardWidget = () => {
             </Link>
             <Numero>{getQuantity()}</Numero>
           </Container> 
-    
   )
 }
 

@@ -34,6 +34,7 @@ npm start
 
 - Ruta '/'    '*'   '/category/:categoryId' redireccionan al componente -- ItemListContainer
 - Ruta '/detail/:productId' redireccionan al componente -- ItemDetailContainer
+- Ruta '/category/:categoryId' redireccionan al componente -- ItemListContainer
 - Ruta '/cart' redirecciona al componente -- Cart
 
 # Formato para Products y Orders de compra en Firebase
